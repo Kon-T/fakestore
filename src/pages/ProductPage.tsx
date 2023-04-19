@@ -14,7 +14,7 @@ function ProductPage() {
   );
   const { addProduct, removeProduct, getItemQuantity } = useActions();
   const quantity = products.find((curr) => curr.id === data?.id)?.quantity;
-  const addToFavorite = (item: IProduct) => {
+  const addToCart = (item: IProduct) => {
     addProduct(item);
   };
   return (
@@ -25,12 +25,12 @@ function ProductPage() {
       </div>
       <div>{data?.title}</div>
       {quantity == undefined ? (
-        <button onClick={() => addToFavorite(data as IProduct)}>
+        <button onClick={() => addProduct(data as IProduct)}>
           ADD TO CART
         </button>
       ) : (
         <button onClick={() => removeProduct(data as IProduct)}>
-          REMOVE PRODUCT
+          REMOVE FROM CART
         </button>
       )}
 

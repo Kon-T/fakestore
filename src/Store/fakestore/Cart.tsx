@@ -30,9 +30,8 @@ export const cartSlice = createSlice({
         });
 
       state.products.cartQuantity++;
-      state.products.totalPrice = parseFloat(
-        (state.products.totalPrice + action.payload.price).toFixed(2)
-      );
+      state.products.totalPrice =
+        state.products.totalPrice + action.payload.price;
 
       localStorage.setItem(PRODUCTS, JSON.stringify(state.products));
     },
@@ -46,14 +45,10 @@ export const cartSlice = createSlice({
         (curr) => curr.id === action.payload.id
       );
       if (findItem) {
-        state.products.totalPrice = parseFloat(
-          (
-            state.products.totalPrice -
-            findItem.quantity * findItem.price
-          ).toFixed(2)
-        );
+        state.products.totalPrice =
+          state.products.totalPrice - findItem.quantity * findItem.price;
         state.products.cartQuantity =
-          state.products.cartQuantity - action.payload.quantity;
+          state.products.cartQuantity - findItem.quantity;
         state.products.products = state.products.products.filter(
           (f) => f.id !== action.payload.id
         );
@@ -69,9 +64,8 @@ export const cartSlice = createSlice({
           findItem.quantity--;
           state.products.cartQuantity--;
 
-          state.products.totalPrice = parseFloat(
-            (state.products.totalPrice - findItem.price).toFixed(2)
-          );
+          state.products.totalPrice =
+            state.products.totalPrice - findItem.price;
           localStorage.setItem(PRODUCTS, JSON.stringify(state.products));
         }
       }
@@ -86,9 +80,7 @@ export const cartSlice = createSlice({
         findItem.quantity++;
         state.products.cartQuantity++;
 
-        state.products.totalPrice = parseFloat(
-          (state.products.totalPrice + findItem.price).toFixed(2)
-        );
+        state.products.totalPrice = state.products.totalPrice + findItem.price;
       }
       localStorage.setItem(PRODUCTS, JSON.stringify(state.products));
     },

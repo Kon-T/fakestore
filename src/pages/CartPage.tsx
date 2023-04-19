@@ -14,7 +14,6 @@ function CartPage() {
     <div>
       <Header />
       <div className="product">
-        Cart
         {products.map((item) => (
           <div className="cartproduct" key={item.id}>
             <img src={item.image} />
@@ -61,7 +60,7 @@ function CartPage() {
         )}
       </div>
       <div>
-        {totalPrice}$ TOTAL<button>BUY</button>
+        {totalPrice.toFixed(2)}$ TOTAL<button>Оформить заказ</button>
       </div>
     </div>
   );
