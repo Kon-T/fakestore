@@ -60,7 +60,10 @@ function CartPage() {
         )}
       </div>
       <div>
-        {totalPrice.toFixed(2)}$ TOTAL<button>Оформить заказ</button>
+        {totalPrice.toFixed(2)}$ TOTAL
+        <div>
+          <button>Оформить заказ</button>
+        </div>
       </div>
     </div>
   );
